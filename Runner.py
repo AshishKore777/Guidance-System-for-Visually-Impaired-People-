@@ -49,7 +49,6 @@ This class is defined to instantiate ObjectDetection class and load Yolov3 model
         self.detector.loadModel()#loading Yolo model
       
 url="http://192.168.43.225:8080/shot.jpg" # url for IP Web Camera App server       
-    
         
 @app.route('/index', methods=['POST'])
 #This function will be called on landing up to the above endpoint.
@@ -69,7 +68,6 @@ This process gets continued on live images untill the user shuts down the IP Web
             img=cv2.imdecode(arr,-1)
             cv2.imwrite("static/detectionimage/a{}.jpeg".format(z),img)#saving the response image in jpeg format
 
-
             input_path = "static/detectionimage/a{}.jpeg".format(z)
             output_path = "static/output/a{}.jpeg".format(z)
             # calling detection function for object detection and storing the object names in a list
@@ -84,9 +82,7 @@ This process gets continued on live images untill the user shuts down the IP Web
                 sss="It seems to be nothing on your way"
                 speech = gTTS(text = sss, lang = language, slow = False)
             else:
-
                 fin='and'.join(obj)
-
                 ss1="Hey!! Their is {} on your way.".format(fin)
                 ss2="Hey!! I found {} their.".format(fin)
                 ss3="Their is {} in front of you.".format(fin)
@@ -103,7 +99,6 @@ This process gets continued on live images untill the user shuts down the IP Web
 
     except:
             return render_template('output.html')#returns output.html template when the app is closed
-
 
 if __name__ == '__main__':
     app.run(debug=True)
